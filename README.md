@@ -116,7 +116,7 @@ Example of a generated map:
 **Architecture requirements**:
 1. Two projects shall be implemented: Game (contains game logic, application entry point, output functionality, etc.) and ChaseLogic (contains pursuing algorithm implementation).
 2. Both are mavenprojects, and ChaseLogic shall be added as a dependency to pom.xml inside Game.
-3. Game.jar archive shall be portable:  JCommander and JCDP must be directly included in the archive. At the same time, all libraries connected to the project shall be declared as maven-dependency. To build such archive, the following plugins shall be used.
+3. Game.jar archive shall be portable:  JCommander and JCDP must be directly included in the archive. At the same time, all libraries connected to the project shall be declared as maven-dependency.
 
 It is also necessary to create a configuration file called application-production.properties. In this file, you will specify your application settings. The example of this file is shown below:
 
