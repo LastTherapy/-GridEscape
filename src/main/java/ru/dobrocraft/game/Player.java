@@ -5,13 +5,9 @@ import ru.dobrocraft.game.Movable;
 import ru.dobrocraft.game.Direction;
 
 import lombok.Getter;
-
+@lombok.Getter
 public class Player implements Movable {
-
-    @lombok.Getter
     private int x;
-
-    @lombok.Getter
     private int y;
 
     public Player(int x, int y) {
@@ -20,7 +16,7 @@ public class Player implements Movable {
     }
 
     @Override
-    public int move(Direction direction, GameMap gameMap) {
+    public void move(Direction direction, GameMap gameMap) {
         int newX = getX();
         int newY = getY();
         switch (direction) {
@@ -37,12 +33,14 @@ public class Player implements Movable {
                 newY++;
                 break;
         }
-        if (newX < 0 || newX >= gameMap.getSize() || newY < 0 || newY >= gameMap.getSize()) {
-            return getX();
+        if (gameMap.getData[newX][newY] != GameObject.WALL.getValue() && gameMap.getData[newX][newY] != GameObject.ENEMY.getValue()) {
+            if (newX < 0 || newX >= gameMap.getSize() || newY < 0 || newY >= gameMap.getSize()) {
+                return;
+            }
+            gameMap.getData[getX()][getY()] = GameObject.EMPTY.getValue();
+            gameMap.getData[newX][newY] = GameObject.PLAYER.getValue();
+            x = newX;
+            y = newY;
         }
-        if (gameMap.data[newX][newY] == GameObject.WALL.getValue() || gameMap.data[newX][newY] == GameObject.ENEMY.getValue()) {
-            return getX();
-        }
-        return newX;
     }
 }
