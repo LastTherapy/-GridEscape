@@ -13,6 +13,5 @@ public class Game {
         GameMap gameMap = new GameMap(size);
         Printer printer = new Printer();
         printer.printMap(gameMap);
-
     }
 }

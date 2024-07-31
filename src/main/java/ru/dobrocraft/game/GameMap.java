@@ -17,6 +17,8 @@ public class GameMap {
         this.size = size;
         this.data = new int[size][size];
         this.clear();
+        this.goalGenerate();
+        this.playerGenerate();
     }
 
     public void clear() {
@@ -29,20 +31,31 @@ public class GameMap {
 
     private void goalGenerate() {
         int x = random.nextInt(size);
-        int y = random.nextInt(size);
-        data[x][y] = GameObject.GOAL.getValue();
-        goalPosition = new Position(x, y);
+        int y = random.nextInt(size / 2);
+        if (data[x][y] == GameObject.EMPTY.getValue()) {
+            data[x][y] = GameObject.GOAL.getValue();
+            goalPosition = new Position(x, y);
+        }
+        else {
+            goalGenerate();
+        }
     }
 
     private void playerGenerate() {
         int x = random.nextInt(size);
-        int y = random.nextInt(size);
-        data[x][y] = GameObject.PLAYER.getValue();
-        playerPosition = new Position(x, y);
-
+        int y = random.nextInt(size / 2) + size / 2;
+        if (data[x][y] == GameObject.EMPTY.getValue()) {
+            data[x][y] = GameObject.PLAYER.getValue();
+            playerPosition = new Position(x, y);
+        }
+        else {
+            playerGenerate();
+        }
     }
 
     private void wallGenerate(int num) {
+         int initX = random.nextInt(size);
+         int initY = random.nextInt(size);
 
     }
 
