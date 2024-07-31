@@ -1,6 +1,9 @@
 package ru.dobrocraft.game;
+
 import ru.dobrocraft.game.GameObject;
+
 import java.util.Random;
+
 import lombok.Getter;
 
 @Getter
@@ -19,12 +22,13 @@ public class GameMap {
         this.clear();
         this.goalGenerate();
         this.playerGenerate();
+        this.wallGenerate(30);
     }
 
     public void clear() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-               data[i][j] = GameObject.EMPTY.getValue();
+                data[i][j] = GameObject.EMPTY.getValue();
             }
         }
     }
@@ -35,8 +39,7 @@ public class GameMap {
         if (data[x][y] == GameObject.EMPTY.getValue()) {
             data[x][y] = GameObject.GOAL.getValue();
             goalPosition = new Position(x, y);
-        }
-        else {
+        } else {
             goalGenerate();
         }
     }
@@ -47,24 +50,53 @@ public class GameMap {
         if (data[x][y] == GameObject.EMPTY.getValue()) {
             data[x][y] = GameObject.PLAYER.getValue();
             playerPosition = new Position(x, y);
-        }
-        else {
+        } else {
             playerGenerate();
         }
     }
 
     private void wallGenerate(int num) {
-         int initX = random.nextInt(size);
-         int initY = random.nextInt(size);
+        final int chunkMaxSize = size / 2;
+        while (num > 0) {
+            int currentChunk = Math.min(num, random.nextInt(chunkMaxSize) + 1);
+            num -= currentChunk;
+            num += wallHorizontalGenerate(currentChunk);
+            currentChunk = Math.min(num, random.nextInt(chunkMaxSize) + 1);
+            num -= currentChunk;
+            num += wallVerticalGenerate(random.nextInt(chunkMaxSize));
+        }
 
     }
 
-    public void printMap() {
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                System.out.print(data[i][j]);
-            }
-            System.out.println();
+
+
+    private boolean addBrick(Position position) {
+        if (position.getX() < size && position.getY() < size &&
+                data[position.getX()][position.getY()] == GameObject.EMPTY.getValue()) {
+            data[position.getX()][position.getY()] = GameObject.WALL.getValue();
+            return true;
         }
+        return false;
+    }
+
+
+    private int wallHorizontalGenerate(int n) {
+        Position position = Position.generateRandomPosition(size);
+        int direction = 1;
+        while (addBrick(position) && n > 0) {
+                    n--;
+                    position = new Position(position.getX() + direction, position.getY());
+                }
+        return n;
+    }
+
+    private int wallVerticalGenerate(int n) {
+        Position position = Position.generateRandomPosition(size);
+        int direction = 1;
+        while (addBrick(position) && n > 0) {
+                    n--;
+                    position = new Position(position.getX(), position.getY() + direction);
+                }
+        return n;
     }
 }
