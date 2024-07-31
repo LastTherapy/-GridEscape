@@ -9,6 +9,10 @@ public class Player implements Move {
         position = new Position(x, y);
     }
 
+    public Player(Position position) {
+        this.position = position;
+    }
+
     @Override
     public void move(Direction direction, GameMap gameMap) {
         int newX = position.getX();

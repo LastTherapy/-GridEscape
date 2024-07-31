@@ -109,7 +109,7 @@ public class GameMap {
                 position = Position.generateRandomPosition(size);
             }
             data[position.getX()][position.getY()] = GameObject.ENEMY.getValue();
-            enemies[i] = new Enemy(position.getX(), position.getY());
+            enemies[i] = new Enemy(position);
         }
     }
 }

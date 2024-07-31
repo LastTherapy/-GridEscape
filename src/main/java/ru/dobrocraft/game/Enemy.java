@@ -9,6 +9,10 @@ public class Enemy implements Move {
         position = new Position(x, y);
     }
 
+    public Enemy(Position position) {
+        this.position = position;
+    }
+
     public void move(Direction direction, GameMap gameMap) {
         int newX = position.getX();
         int newY = position.getY();
