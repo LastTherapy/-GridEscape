@@ -8,6 +8,7 @@ public class GameMap {
     final private int size;
     private int[][] data;
 
+
     public GameMap(int size) {
         this.size = size;
         this.data = new int[size][size];

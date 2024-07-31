@@ -43,7 +43,7 @@ public class GameSettings {
         this.playerChar = properties.getProperty("player.char").charAt(0);
         this.wallChar = properties.getProperty("wall.char").charAt(0);
         this.goalChar = properties.getProperty("goal.char").charAt(0);
-        this.emptyChar = properties.getProperty("empty.char").charAt(0);
+        this.emptyChar = properties.getProperty("empty.char"," ").charAt(0);
         this.enemyColor = properties.getProperty("enemy.color");
         this.emptyColor = properties.getProperty("empty.color");
         this.goalColor = properties.getProperty("goal.color");
