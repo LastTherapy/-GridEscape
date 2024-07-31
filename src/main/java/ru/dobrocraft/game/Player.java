@@ -35,8 +35,5 @@ public class Player implements Move {
             gameMap.getData()[newX][newY] = GameObject.PLAYER.getValue();
             this.position.setPosition(newX, newY);
         }
-        if (newX == gameMap.getGoalX() && newY == gameMap.getGoalY()) {
-
-        }
     }
 }
