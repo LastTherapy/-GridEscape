@@ -3,22 +3,20 @@ package ru.dobrocraft.game;
 import ru.dobrocraft.game.GameMap;
 import ru.dobrocraft.game.Move;
 import ru.dobrocraft.game.Direction;
+import ru.dobrocraft.game.Position;
 
 import lombok.Getter;
 
 @Getter
 public class Enemy implements Move {
-    private int x;
-    private int y;
-
+    Position position;
     public Enemy(int x, int y) {
-        this.x = x;
-        this.y = y;
+        position = new Position(x, y);
     }
 
     public void move(Direction direction, GameMap gameMap) {
-        int newX = getX();
-        int newY = getY();
+        int newX = position.getX();
+        int newY = position.getY();
         switch (direction) {
             case LEFT:
                 newX--;
@@ -41,10 +39,9 @@ public class Enemy implements Move {
 
                 return;
             }
-            gameMap.getData()[getX()][getY()] = GameObject.EMPTY.getValue();
+            gameMap.getData()[position.getX()][position.getY()] = GameObject.EMPTY.getValue();
             gameMap.getData()[newX][newY] = GameObject.ENEMY.getValue();
-            x = newX;
-            y = newY;
+             position.setPosition(newX, newY);
         }
     }
 }
