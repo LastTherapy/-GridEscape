@@ -5,7 +5,7 @@ import ru.dobrocraft.game.Movable;
 import ru.dobrocraft.game.Direction;
 
 import lombok.Getter;
-@lombok.Getter
+@Getter
 public class Player implements Movable {
     private int x;
     private int y;
@@ -33,12 +33,12 @@ public class Player implements Movable {
                 newY++;
                 break;
         }
-        if (gameMap.getData[newX][newY] != GameObject.WALL.getValue() && gameMap.getData[newX][newY] != GameObject.ENEMY.getValue()) {
+        if (gameMap.getData()[newX][newY] != GameObject.WALL.getValue() && gameMap.getData()[newX][newY] != GameObject.ENEMY.getValue()) {
             if (newX < 0 || newX >= gameMap.getSize() || newY < 0 || newY >= gameMap.getSize()) {
                 return;
             }
-            gameMap.getData[getX()][getY()] = GameObject.EMPTY.getValue();
-            gameMap.getData[newX][newY] = GameObject.PLAYER.getValue();
+            gameMap.getData()[getX()][getY()] = GameObject.EMPTY.getValue();
+            gameMap.getData()[newX][newY] = GameObject.PLAYER.getValue();
             x = newX;
             y = newY;
         }

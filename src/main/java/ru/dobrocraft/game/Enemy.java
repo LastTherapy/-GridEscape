@@ -5,6 +5,8 @@ import ru.dobrocraft.game.Movable;
 import ru.dobrocraft.game.Direction;
 
 import lombok.Getter;
+
+@Getter
 public class Enemy {
     private int x;
     private int y;
@@ -31,12 +33,12 @@ public class Enemy {
                 newY++;
                 break;
         }
-        if (gameMap.getData[newX][newY] == GameObject.EMPTY.getValue()) {
+        if (gameMap.getData()[newX][newY] == GameObject.EMPTY.getValue()) {
             if (newX < 0 || newX >= gameMap.getSize() || newY < 0 || newY >= gameMap.getSize()) {
                 return;
             }
-            gameMap.getData[getX()][getY()] = GameObject.EMPTY.getValue();
-            gameMap.getData[newX][newY] = GameObject.ENEMY.getValue();
+            gameMap.getData()[getX()][getY()] = GameObject.EMPTY.getValue();
+            gameMap.getData()[newX][newY] = GameObject.ENEMY.getValue();
             x = newX;
             y = newY;
         }
