@@ -1,5 +1,6 @@
 package ru.dobrocraft.game;
 import ru.dobrocraft.game.GameObject;
+import java.util.Random;
 import lombok.Getter;
 
 @Getter
@@ -10,6 +11,7 @@ public class GameMap {
     private Position goalPosition;
     private Position playerPosition;
     private Enemy[] enemies;
+    Random random = new Random();
 
     public GameMap(int size) {
         this.size = size;
@@ -23,6 +25,21 @@ public class GameMap {
                data[i][j] = GameObject.EMPTY.getValue();
             }
         }
+    }
+
+    private void goalGenerate() {
+        int x = random.nextInt(size);
+        int y = random.nextInt(size);
+        data[x][y] = GameObject.GOAL.getValue();
+        goalPosition = new Position(x, y);
+    }
+
+    private void playerGenerate() {
+        int x = random.nextInt(size);
+        int y = random.nextInt(size);
+        data[x][y] = GameObject.PLAYER.getValue();
+        playerPosition = new Position(x, y);
+
     }
 
     private void wallGenerate(int num) {
