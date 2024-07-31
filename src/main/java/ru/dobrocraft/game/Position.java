@@ -1,7 +1,6 @@
 package ru.dobrocraft.game;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class Position {

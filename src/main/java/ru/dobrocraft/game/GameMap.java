@@ -1,5 +1,5 @@
 package ru.dobrocraft.game;
-import ru.dobrocraft.game.GameObject;
+
 import lombok.Getter;
 
 @Getter
