@@ -7,7 +7,9 @@ public class GameMap {
 
     final private int size;
     private int[][] data;
-
+    private Position goalPosition;
+    private Position playerPosition;
+    private Enemy[] enemies;
 
     public GameMap(int size) {
         this.size = size;

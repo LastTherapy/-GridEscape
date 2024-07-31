@@ -6,7 +6,7 @@ import java.util.Properties;
 
 import lombok.Getter;
 
-
+@Getter
 public class GameSettings {
     @Getter
     private final char enemyChar;
