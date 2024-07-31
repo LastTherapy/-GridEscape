@@ -1,5 +1,7 @@
 package ru.dobrocraft.game;
 
+import java.util.Random;
+
 import lombok.Getter;
 
 @Getter
@@ -15,6 +17,11 @@ public class Position {
     public void setPosition(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public static Position generateRandomPosition(int size) {
+        Random random = new Random();
+        return new Position(random.nextInt(size), random.nextInt(size));
     }
 
     public boolean equals(Position position) {
