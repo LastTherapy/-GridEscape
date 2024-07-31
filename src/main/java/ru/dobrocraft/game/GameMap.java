@@ -23,6 +23,7 @@ public class GameMap {
         this.goalGenerate();
         this.playerGenerate();
         this.wallGenerate(30);
+        this.enemyGenerate(10);
     }
 
     public void clear() {
@@ -71,7 +72,7 @@ public class GameMap {
 
 
     private boolean addBrick(Position position) {
-        if (position.getX() < size && position.getY() < size &&
+        if (position.getX() < size && position.getY() < size && position.getX() >= 0 && position.getY() >= 0 &&
                 data[position.getX()][position.getY()] == GameObject.EMPTY.getValue()) {
             data[position.getX()][position.getY()] = GameObject.WALL.getValue();
             return true;
@@ -82,7 +83,7 @@ public class GameMap {
 
     private int wallHorizontalGenerate(int n) {
         Position position = Position.generateRandomPosition(size);
-        int direction = 1;
+        int direction = Math.random() > 0.5 ? 1 : -1;
         while (addBrick(position) && n > 0) {
                     n--;
                     position = new Position(position.getX() + direction, position.getY());
@@ -92,11 +93,23 @@ public class GameMap {
 
     private int wallVerticalGenerate(int n) {
         Position position = Position.generateRandomPosition(size);
-        int direction = 1;
+        int direction = Math.random() > 0.5 ? 1 : -1;
         while (addBrick(position) && n > 0) {
                     n--;
                     position = new Position(position.getX(), position.getY() + direction);
                 }
         return n;
+    }
+
+    private void enemyGenerate(int num) {
+        enemies = new Enemy[num];
+        for (int i = 0; i < num; i++) {
+            Position position = Position.generateRandomPosition(size);
+            while (data[position.getX()][position.getY()] != GameObject.EMPTY.getValue()) {
+                position = Position.generateRandomPosition(size);
+            }
+            data[position.getX()][position.getY()] = GameObject.ENEMY.getValue();
+            enemies[i] = new Enemy(position.getX(), position.getY());
+        }
     }
 }
