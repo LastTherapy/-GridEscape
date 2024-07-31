@@ -30,10 +30,10 @@ public class Enemy implements Move {
             if (newX < 0 || newX >= gameMap.getSize() || newY < 0 || newY >= gameMap.getSize()) {
                 return;
             }
-            if (newX == gameMap.getGoalX() && newY == gameMap.getGoalY()) {
-
-                return;
-            }
+//            if (newX == gameMap.getGoalX() && newY == gameMap.getGoalY()) {
+//
+//                return;
+//            }
             gameMap.getData()[position.getX()][position.getY()] = GameObject.EMPTY.getValue();
             gameMap.getData()[newX][newY] = GameObject.ENEMY.getValue();
              position.setPosition(newX, newY);

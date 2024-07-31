@@ -1,19 +1,20 @@
 package ru.dobrocraft.game;
-import ru.dobrocraft.game.GameMap;
 
 public class Printer {
-    GameSettings settings = new GameSettings();
+    PrinterSettings settings = new PrinterSettings();
 
 
     public void printMap(GameMap gameMap) {
-
+        System.out.println("_".repeat(gameMap.getSize() + 2));
         for (int i = 0; i < gameMap.getSize(); i++) {
+            System.out.print('|');
             for (int j = 0; j < gameMap.getSize(); j++) {
-                int  gameObject = gameMap.getData()[i][j];
+                int  gameObject = gameMap.getData()[j][i];
                 System.out.print(charObject(gameObject));
             }
-            System.out.println();
+            System.out.println('|');
         }
+        System.out.println("_".repeat(gameMap.getSize() + 2));
     }
 
     private char charObject(int gameObject) {

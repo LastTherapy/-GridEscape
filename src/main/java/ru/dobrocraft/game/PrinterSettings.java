@@ -7,31 +7,21 @@ import java.util.Properties;
 import lombok.Getter;
 
 @Getter
-public class GameSettings {
-    @Getter
+public class PrinterSettings {
     private final char enemyChar;
-    @Getter
     private final char playerChar;
-    @Getter
     private final char wallChar;
-    @Getter
     private final char goalChar;
-    @Getter
     private final char emptyChar;
-    @Getter
     private final String enemyColor;
-    @Getter
     private final String playerColor;
-    @Getter
     private final String wallColor;
-    @Getter
     private final String goalColor;
-    @Getter
     private final String emptyColor;
 
     private Properties properties;
 
-    public GameSettings() {
+    public PrinterSettings() {
         this.properties = new Properties();
         try {
             loadSettings();
@@ -43,7 +33,7 @@ public class GameSettings {
         this.playerChar = properties.getProperty("player.char").charAt(0);
         this.wallChar = properties.getProperty("wall.char").charAt(0);
         this.goalChar = properties.getProperty("goal.char").charAt(0);
-        this.emptyChar = properties.getProperty("empty.char"," ").charAt(0);
+        this.emptyChar = properties.getProperty("empty.char", " ").charAt(0);
         this.enemyColor = properties.getProperty("enemy.color");
         this.emptyColor = properties.getProperty("empty.color");
         this.goalColor = properties.getProperty("goal.color");
