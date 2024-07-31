@@ -1,13 +1,13 @@
 package ru.dobrocraft.game;
 
 import ru.dobrocraft.game.GameMap;
-import ru.dobrocraft.game.Movable;
+import ru.dobrocraft.game.Move;
 import ru.dobrocraft.game.Direction;
 
 import lombok.Getter;
 
 @Getter
-public class Enemy {
+public class Enemy implements Move {
     private int x;
     private int y;
 
@@ -35,6 +35,10 @@ public class Enemy {
         }
         if (gameMap.getData()[newX][newY] == GameObject.EMPTY.getValue()) {
             if (newX < 0 || newX >= gameMap.getSize() || newY < 0 || newY >= gameMap.getSize()) {
+                return;
+            }
+            if (newX == gameMap.getGoalX() && newY == gameMap.getGoalY()) {
+
                 return;
             }
             gameMap.getData()[getX()][getY()] = GameObject.EMPTY.getValue();

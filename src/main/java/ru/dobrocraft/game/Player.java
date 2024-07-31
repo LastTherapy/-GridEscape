@@ -1,24 +1,23 @@
 package ru.dobrocraft.game;
 
 import ru.dobrocraft.game.GameMap;
-import ru.dobrocraft.game.Movable;
+import ru.dobrocraft.game.Move;
 import ru.dobrocraft.game.Direction;
+import ru.dobrocraft.game.Position;
 
 import lombok.Getter;
 @Getter
-public class Player implements Movable {
-    private int x;
-    private int y;
+public class Player implements Move {
+    private Position position;
 
     public Player(int x, int y) {
-        this.x = x;
-        this.y = y;
+        position = new Position(x, y);
     }
 
     @Override
     public void move(Direction direction, GameMap gameMap) {
-        int newX = getX();
-        int newY = getY();
+        int newX = position.getX();
+        int newY = position.getY();
         switch (direction) {
             case LEFT:
                 newX--;
@@ -33,14 +32,13 @@ public class Player implements Movable {
                 newY++;
                 break;
         }
+        if (newX < 0 || newX >= gameMap.getSize() || newY < 0 || newY >= gameMap.getSize()) {
+            return;
+        }
         if (gameMap.getData()[newX][newY] != GameObject.WALL.getValue() && gameMap.getData()[newX][newY] != GameObject.ENEMY.getValue()) {
-            if (newX < 0 || newX >= gameMap.getSize() || newY < 0 || newY >= gameMap.getSize()) {
-                return;
-            }
-            gameMap.getData()[getX()][getY()] = GameObject.EMPTY.getValue();
+            gameMap.getData()[position.getX()][position.getY()] = GameObject.EMPTY.getValue();
             gameMap.getData()[newX][newY] = GameObject.PLAYER.getValue();
-            x = newX;
-            y = newY;
+            this.position.setPosition(newX, newY);
         }
     }
 }
