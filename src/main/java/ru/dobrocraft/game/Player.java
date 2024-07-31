@@ -1,10 +1,5 @@
 package ru.dobrocraft.game;
 
-import ru.dobrocraft.game.GameMap;
-import ru.dobrocraft.game.Move;
-import ru.dobrocraft.game.Direction;
-import ru.dobrocraft.game.Position;
-
 import lombok.Getter;
 @Getter
 public class Player implements Move {
@@ -39,6 +34,9 @@ public class Player implements Move {
             gameMap.getData()[position.getX()][position.getY()] = GameObject.EMPTY.getValue();
             gameMap.getData()[newX][newY] = GameObject.PLAYER.getValue();
             this.position.setPosition(newX, newY);
+        }
+        if (newX == gameMap.getGoalX() && newY == gameMap.getGoalY()) {
+
         }
     }
 }

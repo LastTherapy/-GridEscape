@@ -1,10 +1,5 @@
 package ru.dobrocraft.game;
 
-import ru.dobrocraft.game.GameMap;
-import ru.dobrocraft.game.Move;
-import ru.dobrocraft.game.Direction;
-import ru.dobrocraft.game.Position;
-
 import lombok.Getter;
 
 @Getter
