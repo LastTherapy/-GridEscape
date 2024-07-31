@@ -1,8 +1,11 @@
 package ru.dobrocraft.game;
 import ru.dobrocraft.game.GameObject;
+import lombok.Getter;
 
 public class GameMap {
+    @Getter
     final private int size;
+    @Getter
     private int[][] data;
 
     public GameMap(int size) {

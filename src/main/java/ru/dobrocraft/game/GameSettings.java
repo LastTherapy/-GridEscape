@@ -4,22 +4,34 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import lombok.Getter;
 
-public class SystemSettings {
-    public char enemyChar;
-    public char playerChar;
-    public char wallChar;
-    public char goalChar;
-    public char emptyChar;
-    public char enemyColor;
-    public char playerColor;
-    public char wallColor;
-    public char goalColor;
-    public char emptyColor;
+
+public class GameSettings {
+    @Getter
+    private final char enemyChar;
+    @Getter
+    private final char playerChar;
+    @Getter
+    private final char wallChar;
+    @Getter
+    private final char goalChar;
+    @Getter
+    private final char emptyChar;
+    @Getter
+    private final String enemyColor;
+    @Getter
+    private final String playerColor;
+    @Getter
+    private final String wallColor;
+    @Getter
+    private final String goalColor;
+    @Getter
+    private final String emptyColor;
 
     private Properties properties;
 
-    public SystemSettings() {
+    public GameSettings() {
         this.properties = new Properties();
         try {
             loadSettings();
@@ -32,11 +44,11 @@ public class SystemSettings {
         this.wallChar = properties.getProperty("wall.char").charAt(0);
         this.goalChar = properties.getProperty("goal.char").charAt(0);
         this.emptyChar = properties.getProperty("empty.char").charAt(0);
-        this.enemyColor = properties.getProperty("enemy.color").charAt(0);
-        this.playerColor = properties.getProperty("player.color").charAt(0);
-        this.wallColor = properties.getProperty("wall.color").charAt(0);
-        this.goalColor = properties.getProperty("goal.color").charAt(0);
-        this.emptyColor = properties.getProperty("empty.color").charAt(0);
+        this.enemyColor = properties.getProperty("enemy.color");
+        this.emptyColor = properties.getProperty("empty.color");
+        this.goalColor = properties.getProperty("goal.color");
+        this.playerColor = properties.getProperty("player.color");
+        this.wallColor = properties.getProperty("wall.color");
     }
 
 
@@ -46,6 +58,5 @@ public class SystemSettings {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
