@@ -1,4 +1,4 @@
-package ru.dobrocraft.game;
+package ru.dobrocraft;
 
 import lombok.Getter;
 @Getter

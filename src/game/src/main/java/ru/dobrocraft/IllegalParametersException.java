@@ -1,4 +1,4 @@
-package ru.dobrocraft.game;
+package ru.dobrocraft;
 
 public class IllegalParametersException extends RuntimeException {
     public IllegalParametersException(String message) {

@@ -1,4 +1,4 @@
-package ru.dobrocraft.game;
+package ru.dobrocraft;
 
 public enum GameObject {
     PLAYER(0),

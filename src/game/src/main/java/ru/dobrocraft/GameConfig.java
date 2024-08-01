@@ -1,4 +1,4 @@
-package ru.dobrocraft.game;
+package ru.dobrocraft;
 
 import com.beust.jcommander.Parameter;
 public class GameConfig {

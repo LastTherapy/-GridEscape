@@ -1,4 +1,4 @@
-package ru.dobrocraft.game;
+package ru.dobrocraft;
 
 public class InputController {
     public static Direction getDirectionFromInput(String input) {

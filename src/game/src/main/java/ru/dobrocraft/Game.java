@@ -1,4 +1,4 @@
-package ru.dobrocraft.game;
+package ru.dobrocraft;
 
 import com.beust.jcommander.JCommander;
 import java.util.Scanner;
@@ -18,19 +18,18 @@ public class Game {
         printer.printMap(gameMap);
         Scanner scanner = new Scanner(System.in);
 
-        InputController inputController = new InputController();
-        while (!isGameOver) {
-            String input = scanner.nextLine();
-            if (input.equals("q")) {
-                isGameOver = true;
-            }
-            Direction direction = inputController.getDirectionFromInput(input);
-            if (direction != null) {
-                //gameMap.smth(direction, gameMap); // Я вижу у тебя отрисовку карты с нуля, но не вижжу её перерисовку
-                printer.printMap(gameMap);
-            }
+//        InputController inputController = new InputController();
+//        while (!isGameOver) {
+//            String input = scanner.nextLine();
+//            if (input.equals("q")) {
+//                isGameOver = true;
+//            }
+//            Direction direction = inputController.getDirectionFromInput(input);
+//            if (direction != null) {
+//                //gameMap.smth(direction, gameMap); // Я вижу у тебя отрисовку карты с нуля, но не вижжу её перерисовку
+//                printer.printMap(gameMap);
+//            }
 
 
         }
-    }
 }

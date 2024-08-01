@@ -1,4 +1,4 @@
-package ru.dobrocraft.game;
+package ru.dobrocraft;
 
 import java.io.IOException;
 import java.io.InputStream;
