@@ -10,7 +10,10 @@ public class Printer {
 
 
     public void printMap(GameMap gameMap) {
-        System.out.println("_".repeat(gameMap.getSize() + 2));
+        for (int i = 0; i < gameMap.getSize() + 2; i++) {
+            System.out.print("_");
+        }
+        System.out.println();
         for (int i = 0; i < gameMap.getSize(); i++) {
             System.out.print('|');
             for (int j = 0; j < gameMap.getSize(); j++) {
@@ -27,7 +30,10 @@ public class Printer {
             }
             System.out.println('|');
         }
-        System.out.println("_".repeat(gameMap.getSize() + 2));
+        for (int i = 0; i < gameMap.getSize() + 2; i++) {
+            System.out.print("¯");
+        }
+        System.out.println();
     }
 
 

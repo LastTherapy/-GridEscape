@@ -1,9 +1,5 @@
 package ru.dobrocraft.game;
-
-import ru.dobrocraft.game.GameObject;
-
 import java.util.Random;
-
 import lombok.Getter;
 
 @Getter
@@ -32,6 +28,17 @@ public class GameMap {
                 data[i][j] = GameObject.EMPTY.getValue();
             }
         }
+    }
+
+    public void generateMap(int walls, int enemies) {
+        if (walls + enemies + 2 > size * size) {
+            throw new IllegalParametersException("Количество препятствий превышает размер поля");
+        }
+        clear();
+        goalGenerate();
+        playerGenerate();
+        wallGenerate(walls);
+        enemyGenerate(enemies);
     }
 
     private void goalGenerate() {
