@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public class Enemy implements Move {
     Position position;
+
     public Enemy(int x, int y) {
         position = new Position(x, y);
     }
@@ -13,7 +14,7 @@ public class Enemy implements Move {
         this.position = position;
     }
 
-    public void move(Direction direction, GameMap gameMap) {
+    public Boolean move(Direction direction, GameMap gameMap) {
         int newX = position.getX();
         int newY = position.getY();
         switch (direction) {
@@ -30,17 +31,15 @@ public class Enemy implements Move {
                 newY++;
                 break;
         }
+        if (newX < 0 || newX >= gameMap.getSize() || newY < 0 || newY >= gameMap.getSize()) {
+            return false;
+        }
         if (gameMap.getData()[newX][newY] == GameObject.EMPTY.getValue()) {
-            if (newX < 0 || newX >= gameMap.getSize() || newY < 0 || newY >= gameMap.getSize()) {
-                return;
-            }
-//            if (newX == gameMap.getGoalX() && newY == gameMap.getGoalY()) {
-//
-//                return;
-//            }
             gameMap.getData()[position.getX()][position.getY()] = GameObject.EMPTY.getValue();
             gameMap.getData()[newX][newY] = GameObject.ENEMY.getValue();
-             position.setPosition(newX, newY);
+            position.setPosition(newX, newY);
+            return true;
         }
+        return false;
     }
 }

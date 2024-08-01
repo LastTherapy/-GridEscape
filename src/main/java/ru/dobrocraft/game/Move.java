@@ -1,5 +1,5 @@
 package ru.dobrocraft.game;
 
 public interface Move {
-    public void move(Direction direction, GameMap gameMap);
+    public Boolean move(Direction direction, GameMap gameMap);
 }

@@ -1,7 +1,7 @@
 package ru.dobrocraft.game;
 
 public class InputController {
-    private static Direction getDirectionFromInput(String input) {
+    public static Direction getDirectionFromInput(String input) {
         switch (input.toUpperCase()) {
             case "W":
                 return Direction.UP;

@@ -77,7 +77,6 @@ public class GameMap {
     }
 
 
-
     private boolean addBrick(Position position) {
         if (position.getX() < size && position.getY() < size && position.getX() >= 0 && position.getY() >= 0 &&
                 data[position.getX()][position.getY()] == GameObject.EMPTY.getValue()) {
