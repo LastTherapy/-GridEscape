@@ -1,5 +1,5 @@
-package main.java.ru.dobrocraft;
-
+package ru.dobrocraft.game;
+// Это для логики преследования, позже вынесу в отдельный модуль
 import lombok.Getter;
 @Getter
 public class Node {

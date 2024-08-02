@@ -1,4 +1,4 @@
-package ru.dobrocraft;
+package main.java.ru.dobrocraft;
 
 import lombok.Getter;
 
