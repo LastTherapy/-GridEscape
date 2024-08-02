@@ -30,6 +30,5 @@ public class Game {
 //                printer.printMap(gameMap);
 //            }
 
-
         }
 }
