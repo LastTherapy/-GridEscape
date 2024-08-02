@@ -15,7 +15,8 @@ public class Game {
         int wallsCount = gameConfig.getWallsCount();
         GameMap gameMap = new GameMap(size);
         gameMap.generateMap(wallsCount, enemiesCount);
-        Printer printer = new Printer(gameMap);
+        Printer printer = new Printer();
+        printer.printMap(gameMap);
         Scanner scanner = new Scanner(System.in);
         Game game = new Game();
 
@@ -25,17 +26,7 @@ public class Game {
         Thread printerThread = new Thread(printer);
         printerThread.start();
 
-        InputController inputController = new InputController();
-        while (!game.isGameOver) {
-            String input = scanner.nextLine();
-            if (input.equals("q")) {
-                game.isGameOver = true;
-            }
-            Direction direction = inputController.getDirectionFromInput(input);
-            if (direction != null) {
-                //gameMap.smth(direction, gameMap); // Я вижу у тебя отрисовку карты с нуля, но не вижжу её перерисовку
-                printer.printMap(gameMap);
-            }
+
         }
     }
 }

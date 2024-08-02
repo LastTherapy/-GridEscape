@@ -1,4 +1,4 @@
-package ru.dobrocraft;
+package main.java.ru.dobrocraft;
 
 public enum GameObject {
     PLAYER(0),

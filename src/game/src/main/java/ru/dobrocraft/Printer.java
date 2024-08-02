@@ -1,4 +1,5 @@
-package ru.dobrocraft;
+package main.java.ru.dobrocraft;
+
 import com.diogonunes.jcdp.color.ColoredPrinter;
 import com.diogonunes.jcdp.color.api.Ansi;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
