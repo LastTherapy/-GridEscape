@@ -4,10 +4,23 @@ import com.diogonunes.jcdp.color.api.Ansi;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
 
-public class Printer {
+public class Printer implements Runnable {
+    // ANSI escape code to clear the screen
+    private static final String ANSI_CLS = "\u001b[2J";
+    // ANSI escape code to move the cursor to the top left corner
+    private static final String ANSI_HOME = "\u001b[H";
+
     PrinterSettings settings = new PrinterSettings();
     FColor fColor = FColor.BLACK;
+    private GameMap gameMap;
 
+    public Printer(GameMap gameMap) {
+        this.gameMap = gameMap;
+    }
+
+    public void printMap() {
+        printMap(gameMap);
+    }
 
     public void printMap(GameMap gameMap) {
         for (int i = 0; i < gameMap.getSize() + 2; i++) {
@@ -26,7 +39,6 @@ public class Printer {
                         .attribute(Ansi.Attribute.BOLD)
                         .build();
                 coloredPrinter.print(charObject);
-
             }
             System.out.println('|');
         }
@@ -71,6 +83,27 @@ public class Printer {
                 return settings.getEmptyChar();
         }
     }
+
+    private void update() {
+        System.out.println(ANSI_CLS + ANSI_HOME);
+        System.out.flush();
+        printMap();
+    }
+
+    @Override
+    public void run() {
+        try {
+            while (true) {
+                update();
+                Thread.sleep(500);
+            }
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
 
 class BackGroundColor {
