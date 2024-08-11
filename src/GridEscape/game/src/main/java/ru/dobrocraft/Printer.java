@@ -85,7 +85,7 @@ public class Printer {
         }
     }
 
-    private void update() {
+    public void update() {
         System.out.println(ANSI_CLS + ANSI_HOME);
         System.out.flush();
         printMap();

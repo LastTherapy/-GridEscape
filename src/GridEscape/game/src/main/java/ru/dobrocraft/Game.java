@@ -25,11 +25,17 @@ public class Game {
         printer.printMap(gameMap);
         Scanner scanner = new Scanner(System.in);
         Game game = new Game();
-        // принтер обновляет экран все время через м ногопоточность (чтобы не блокировался ввод)
-        // если у  нас девелоп режим то вместо этого мы каждый раз вызываем метод  printMap() вручную
-        // метод апдейт перерисовывает карту
-//        Thread printerThread = new Thread(printer);
-//        printerThread.start();
-
+        while (!game.isGameOver) {
+            String command = scanner.nextLine().toUpperCase();
+            if (command.equals("Q")) {
+                break;
+            }
+            Direction direction = InputController.getDirectionFromInput(command);
+            if (direction == null) {
+                continue;
+            }
+            gameMap.getPlayer().move(direction, gameMap);
+            printer.update();
+        }
         }
     }

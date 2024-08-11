@@ -9,7 +9,7 @@ public class GameMap {
     final private int size;
     private int[][] data;
     private Position goalPosition;
-    private Position playerPosition;
+    private Player player;
     private Enemy[] enemies;
     Random random = new Random();
 
@@ -78,7 +78,7 @@ public class GameMap {
         int y = random.nextInt(size / 2) + size / 2;
         if (data[x][y] == GameObject.EMPTY.getValue()) {
             data[x][y] = GameObject.PLAYER.getValue();
-            playerPosition = new Position(x, y);
+            player = new Player(new Position(x, y));
         } else {
             playerGenerate();
         }
