@@ -1,8 +1,7 @@
 package ru.dobrocraft;
 
 import java.util.Random;
-
-import lombok.Getter;
+import lombok.*;
 
 @Getter
 public class Position {

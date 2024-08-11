@@ -5,7 +5,7 @@ import com.diogonunes.jcdp.color.api.Ansi;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
 
-public class Printer implements Runnable {
+public class Printer {
     // ANSI escape code to clear the screen
     private static final String ANSI_CLS = "\u001b[2J";
     // ANSI escape code to move the cursor to the top left corner
@@ -86,26 +86,10 @@ public class Printer implements Runnable {
     }
 
     private void update() {
-//        System.out.println(ANSI_CLS + ANSI_HOME);
-        System.out.print("\033[H\033[2J");
+        System.out.println(ANSI_CLS + ANSI_HOME);
         System.out.flush();
         printMap();
     }
-
-    @Override
-    public void run() {
-        try {
-            while (true) {
-                update();
-                Thread.sleep(1000);
-            }
-        }
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }
 
 class BackGroundColor {

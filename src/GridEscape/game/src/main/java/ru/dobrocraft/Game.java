@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Game {
     private Boolean isGameOver = false;
+    private Boolean isDevelop = false;
 
     public static void main(String[] args) {
         // сделать экземпляр игры и старт
@@ -13,8 +14,13 @@ public class Game {
         int size = gameConfig.getFieldSize();
         int enemiesCount = gameConfig.getEnemiesCount();
         int wallsCount = gameConfig.getWallsCount();
-        GameMap gameMap = new GameMap(size);
-        gameMap.generateMap(wallsCount, enemiesCount);
+//        GameMap gameMap = new GameMap(size);
+//        gameMap.generateMap(wallsCount, enemiesCount);
+        GameMap gameMap = new GameMap.Builder()
+                .setEnemies(enemiesCount)
+                .setWalls(wallsCount)
+                .setSize(size).build();
+
         Printer printer = new Printer(gameMap);
         printer.printMap(gameMap);
         Scanner scanner = new Scanner(System.in);

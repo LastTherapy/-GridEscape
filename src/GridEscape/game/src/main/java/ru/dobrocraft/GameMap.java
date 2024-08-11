@@ -13,14 +13,39 @@ public class GameMap {
     private Enemy[] enemies;
     Random random = new Random();
 
-    public GameMap(int size) {
-        this.size = size;
-        this.data = new int[size][size];
-        this.clear();
-        this.goalGenerate();
-        this.playerGenerate();
-        this.wallGenerate(30);
-        this.enemyGenerate(10);
+    public static  class Builder {
+        private int size = 30;
+        private int walls = 1;
+        private int enemies = 1;
+
+        public Builder setSize(int size) {
+            this.size = size;
+            return this;
+        }
+        public Builder setWalls(int walls) {
+            this.walls = walls;
+            return this;
+        }
+        public Builder setEnemies(int enemies) {
+            this.enemies = enemies;
+            return this;
+        }
+
+        public GameMap build() {
+            GameMap gameMap = new GameMap(this);
+            gameMap.clear();
+            gameMap.goalGenerate();
+            gameMap.playerGenerate();
+            WallGenerator.getWallGenerator(gameMap).generateWall(walls);
+            gameMap.enemyGenerate(enemies);
+            return gameMap;
+        }
+    }
+
+    private GameMap(Builder builder) {
+        this.size = builder.size;
+        this.data = new int[builder.size][builder.size];
+        this.enemies = new Enemy[builder.enemies];
     }
 
     public void clear() {
@@ -35,11 +60,6 @@ public class GameMap {
         if (walls + enemies + 2 > size * size) {
             throw new IllegalParametersException("Количество препятствий превышает размер поля");
         }
-        clear();
-        goalGenerate();
-        playerGenerate();
-        wallGenerate(walls);
-        enemyGenerate(enemies);
     }
 
     private void goalGenerate() {
@@ -62,50 +82,6 @@ public class GameMap {
         } else {
             playerGenerate();
         }
-    }
-
-    private void wallGenerate(int num) {
-        final int chunkMaxSize = size / 2;
-        while (num > 0) {
-            int currentChunk = Math.min(num, random.nextInt(chunkMaxSize) + 1);
-            num -= currentChunk;
-            num += wallHorizontalGenerate(currentChunk);
-            currentChunk = Math.min(num, random.nextInt(chunkMaxSize) + 1);
-            num -= currentChunk;
-            num += wallVerticalGenerate(random.nextInt(chunkMaxSize));
-        }
-
-    }
-
-
-    private boolean addBrick(Position position) {
-        if (position.getX() < size && position.getY() < size && position.getX() >= 0 && position.getY() >= 0 &&
-                data[position.getX()][position.getY()] == GameObject.EMPTY.getValue()) {
-            data[position.getX()][position.getY()] = GameObject.WALL.getValue();
-            return true;
-        }
-        return false;
-    }
-
-
-    private int wallHorizontalGenerate(int n) {
-        Position position = Position.generateRandomPosition(size);
-        int direction = Math.random() > 0.5 ? 1 : -1;
-        while (addBrick(position) && n > 0) {
-                    n--;
-                    position = new Position(position.getX() + direction, position.getY());
-                }
-        return n;
-    }
-
-    private int wallVerticalGenerate(int n) {
-        Position position = Position.generateRandomPosition(size);
-        int direction = Math.random() > 0.5 ? 1 : -1;
-        while (addBrick(position) && n > 0) {
-                    n--;
-                    position = new Position(position.getX(), position.getY() + direction);
-                }
-        return n;
     }
 
     private void enemyGenerate(int num) {

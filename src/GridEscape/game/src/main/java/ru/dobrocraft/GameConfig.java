@@ -9,7 +9,7 @@ public class GameConfig {
     public static int fieldSize = 30;
 
     @Parameter(names = "--wallsCount", description = "Количество стен")
-    public static int wallsCount = 1;
+    public static int wallsCount = 45;
 
     @Parameter(names = "--profile", description = "Режим отладки")
     public static String profile = "production";
